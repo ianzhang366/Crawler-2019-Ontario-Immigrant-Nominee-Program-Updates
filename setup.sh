@@ -1,4 +1,5 @@
 #!/bin/bash
+# this script is used to install docker and docker-compose on the test vm for running the project later on
 install_docker() {
 		echo -e "\n\nInstalling Docker\n";
 		curl -fsSL get.docker.com -o get-docker.sh;
