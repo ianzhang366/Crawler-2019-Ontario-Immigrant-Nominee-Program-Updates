@@ -17,10 +17,16 @@ install_docker_compose() {
 main() {
 		ENV=$1;
 		VERSION_WITH_PERIODS=$2;
-        echo -e "$1\t$2"
+        echo -e "$1\t$2";
 		SCRIPT_START_TIME=`date`;
-		
+        echo -e "\n\nScript Start Time: ${SCRIPT_START_TIME}";
+		echo -e "apt-get upgrade";
+        apt-get upgrade
+        echo -e "apt-get update";
+        apt-get update
+        echo -e "install_docker";
 		install_docker
+        echo -e "install_docker_compose";
 		install_docker_compose
 
 		
