@@ -4,7 +4,7 @@
 SCRIPT_START_TIME=`date`;
 echo -e "\n\n Build docker image script start time: ${SCRIPT_START_TIME}";
 
-docker build ./Dockerfile
+docker build .
 
 SCRIPT_COMPLETE_TIME=`date`;
 echo -e "\n\n Build docker image script start time: ${SCRIPT_COMPLETE_TIME}";
