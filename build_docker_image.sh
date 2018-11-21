@@ -5,7 +5,7 @@ VERSION=$1;
 SCRIPT_START_TIME=`date`;
 echo -e "\n\n Build docker image script start time: ${SCRIPT_START_TIME}";
 
-docker build -t pnpCrawler:${VERSION} . 
+docker build -t pnp_crawler:${VERSION} . 
 
 SCRIPT_COMPLETE_TIME=`date`;
 echo -e "\n\n Build docker image script start time: ${SCRIPT_COMPLETE_TIME}";
