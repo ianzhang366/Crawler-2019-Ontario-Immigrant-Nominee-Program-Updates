@@ -24,9 +24,7 @@ main() {
         apt-get upgrade
         echo -e "apt-get update";
         apt-get update
-        echo -e "install_docker";
 		install_docker
-        echo -e "install_docker_compose";
 		install_docker_compose
 
 		
