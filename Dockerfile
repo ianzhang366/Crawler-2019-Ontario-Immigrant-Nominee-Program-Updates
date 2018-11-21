@@ -25,14 +25,14 @@ RUN pip install selenium
 RUN pip install pyvirtualdisplay
 RUN pip install bs4
 
-ADD ./pnpAtPythonanywhere /opt/pnpAtPythonanywhere
+ADD ./pnpCrawler /opt/pnpCrawler
 
 #COPY crontab /etc/cron.d/cool-task
 #RUN chmod 0644 /etc/cron.d/cool-task
 
 #RUN (crontab -l ; echo "TZ=America/Toronto")| crontab -
-RUN (crontab -l ; echo "0 */2 * * * /opt/pnpAtPythonanywhere/src/clear_log.sh")| crontab -
-RUN (crontab -l ; echo "* * * * * cd /opt/pnpAtPythonanywhere/src && python email_handler.py")| crontab -
+RUN (crontab -l ; echo "0 */2 * * * /opt/pnpCrawler/src/clear_log.sh")| crontab -
+RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python email_handler.py")| crontab -
 
 
 #CMD tail -f /dev/null #this line will make the container keeps running
