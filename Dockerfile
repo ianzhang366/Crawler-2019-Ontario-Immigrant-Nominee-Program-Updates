@@ -25,7 +25,8 @@ RUN pip install selenium
 RUN pip install pyvirtualdisplay
 RUN pip install bs4
 
-ADD ./pnpCrawler /opt/pnpCrawler
+#adding the project to image
+ADD ../pnpCrawler /opt/pnpCrawler 
 
 #COPY crontab /etc/cron.d/cool-task
 #RUN chmod 0644 /etc/cron.d/cool-task
