@@ -3,4 +3,5 @@
 
 VERSION=$1;
 #adding the project to image
-docker run -dit -p 8888:8888 pnp_crawler:${VERSION}
+doker kill pnp_crawler 
+docker run -dit -p 8888:8888 -name pnp_crawler pnp_crawler:${VERSION}
