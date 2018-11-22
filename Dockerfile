@@ -24,7 +24,10 @@ RUN pip install -U setuptools
 RUN pip install selenium
 RUN pip install pyvirtualdisplay
 RUN pip install bs4
-
+RUN pip install jupyter
+RUN pip install jupyter_contrib_nbextensions
+RUN jupyter nbextensions_configurator enable --system
+RUN jupyter nbextension enable codefolding/main
 
 #adding the project to image
 ADD . /opt/pnpCrawler 
@@ -41,4 +44,4 @@ RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python email_handler
 #CMD tail -f /dev/null #this line will make the container keeps running
 #CMD [ "python", "/opt/pnpAtPythonanywhere/src/email_handler.py" ]
 
-ENTRYPOINT service cron start && /bin/bash
+ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook
