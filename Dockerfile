@@ -28,9 +28,10 @@ RUN pip install jupyter
 RUN pip install jupyter_contrib_nbextensions
 RUN jupyter nbextensions_configurator enable --system
 RUN jupyter nbextension enable codefolding/main
-
+#RUN jupyter notebook --generate-config
 #adding the project to image
-ADD . /opt/pnpCrawler 
+ADD . /opt/pnpCrawler
+ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py 
 
 
 #COPY crontab /etc/cron.d/cool-task
@@ -44,4 +45,5 @@ RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python email_handler
 #CMD tail -f /dev/null #this line will make the container keeps running
 #CMD [ "python", "/opt/pnpAtPythonanywhere/src/email_handler.py" ]
 
-ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook
+ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook --ip=0.0.0.0 --allow-root
+#ENTRYPOINT service cron start && /bin/bash
