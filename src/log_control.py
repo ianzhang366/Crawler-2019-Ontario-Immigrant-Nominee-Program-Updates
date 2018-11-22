@@ -6,7 +6,7 @@ log_to_file = logging.INFO #log file
 print_console = False # whether print log info at console
 os.chdir(sys.path[0])
 ######################### Logging ##########################
-def log_main(log_name, log_file= os.path.abspath('..') + '/output/log_daily.log'):
+def log_main(log_name, log_file= os.path.abspath('.') + '/output/log_daily.log'):
     # print log_file
     logger = logging.getLogger(log_name)
     logger.setLevel(log_base_level) #at root log level

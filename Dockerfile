@@ -18,8 +18,9 @@ RUN apt-get update \
     firefox \
     vim \
     cron \
+python3-pip \
     && apt-get autoremove \
-    && apt-get clean
+    && apt-get clean 
 RUN pip install -U setuptools
 RUN pip install selenium
 RUN pip install pyvirtualdisplay
@@ -28,6 +29,7 @@ RUN pip install jupyter
 RUN pip install jupyter_contrib_nbextensions
 RUN jupyter nbextensions_configurator enable --system
 RUN jupyter nbextension enable codefolding/main
+RUN pip3 install ipython[all]
 #RUN jupyter notebook --generate-config
 #adding the project to image
 ADD . /opt/pnpCrawler
