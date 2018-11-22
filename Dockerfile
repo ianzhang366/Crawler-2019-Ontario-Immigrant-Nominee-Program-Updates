@@ -18,7 +18,7 @@ RUN apt-get update \
     firefox \
     vim \
     cron \
-python3-pip \
+    python3-pip \
     && apt-get autoremove \
     && apt-get clean 
 RUN pip install -U setuptools

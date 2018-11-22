@@ -174,3 +174,55 @@ console.error: BroadcastService:
   Stack:
     remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
 
+1542912901394	geckodriver	INFO	geckodriver 0.20.1
+1542912901404	geckodriver	INFO	Listening on 127.0.0.1:38878
+1542912902403	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.r1Gfw3OABNtx"
+1542912903079	Marionette	DEBUG	Received observer notification profile-after-change
+1542912903165	Marionette	DEBUG	Received observer notification command-line-startup
+1542912903165	Marionette	DEBUG	Received observer notification nsPref:changed
+1542912903165	Marionette	DEBUG	Init aborted (running=false, enabled=true, finalUIStartup=false)
+1542912903409	Marionette	DEBUG	Received observer notification toplevel-window-ready
+
+(firefox:2325): LIBDBUSMENU-GLIB-WARNING **: 18:55:03.957: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
+1542912904270	Marionette	DEBUG	Received observer notification sessionstore-windows-restored
+1542912904270	Marionette	DEBUG	Waiting for delayed startup...
+1542912904364	Marionette	DEBUG	Setting recommended pref app.update.disabledForTesting to true
+1542912904364	Marionette	DEBUG	Setting recommended pref security.turn_off_all_security_so_that_viruses_can_take_over_this_computer to true
+1542912904365	Marionette	DEBUG	Setting recommended pref toolkit.cosmeticAnimations.enabled to false
+1542912904366	Marionette	DEBUG	Setting recommended pref datareporting.policy.dataSubmissionPolicyAccepted to false
+1542912904367	Marionette	DEBUG	Setting recommended pref dom.disable_beforeunload to true
+1542912904421	Marionette	INFO	Listening on port 45724
+1542912904422	Marionette	DEBUG	Remote service is active
+1542912904514	Marionette	DEBUG	Accepted connection 0 from 127.0.0.1:39268
+1542912904524	Marionette	TRACE	0 -> [0,1,"newSession",{"acceptInsecureCerts":true,"browserName":"firefox","capabilities":{"desiredCapabilities":{"acceptInsecureCerts":true,"browserName":"firefox"}}}]
+1542912904525	Marionette	TRACE	0 <- [1,1,{"error":"unknown command","message":"newSession","stacktrace":"WebDriverError@chrome://marionette/content/error.js:178: ... et@chrome://marionette/content/server.js:245:8\n_onJSONObjectReady/<@chrome://marionette/content/transport.js:490:9\n"},null]
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+1542912961835	geckodriver	INFO	geckodriver 0.20.1
+1542912961842	geckodriver	INFO	Listening on 127.0.0.1:39030
+1542912962846	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.n3BKCPI5oTvP"
+1542912963514	Marionette	DEBUG	Received observer notification profile-after-change
+1542912963597	Marionette	DEBUG	Received observer notification command-line-startup
+1542912963597	Marionette	DEBUG	Received observer notification nsPref:changed
+1542912963597	Marionette	DEBUG	Init aborted (running=false, enabled=true, finalUIStartup=false)
+1542912963871	Marionette	DEBUG	Received observer notification toplevel-window-ready
+
+(firefox:2648): LIBDBUSMENU-GLIB-WARNING **: 18:56:04.457: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
+1542912964769	Marionette	DEBUG	Received observer notification sessionstore-windows-restored
+1542912964769	Marionette	DEBUG	Waiting for delayed startup...
+1542912964888	Marionette	DEBUG	Setting recommended pref app.update.disabledForTesting to true
+1542912964888	Marionette	DEBUG	Setting recommended pref security.turn_off_all_security_so_that_viruses_can_take_over_this_computer to true
+1542912964890	Marionette	DEBUG	Setting recommended pref toolkit.cosmeticAnimations.enabled to false
+1542912964891	Marionette	DEBUG	Setting recommended pref datareporting.policy.dataSubmissionPolicyAccepted to false
+1542912964892	Marionette	DEBUG	Setting recommended pref dom.disable_beforeunload to true
+1542912964941	Marionette	INFO	Listening on port 34545
+1542912964942	Marionette	DEBUG	Remote service is active
+1542912964967	Marionette	DEBUG	Accepted connection 0 from 127.0.0.1:40076
+1542912964971	Marionette	TRACE	0 -> [0,1,"newSession",{"acceptInsecureCerts":true,"browserName":"firefox","capabilities":{"desiredCapabilities":{"acceptInsecureCerts":true,"browserName":"firefox"}}}]
+1542912964971	Marionette	TRACE	0 <- [1,1,{"error":"unknown command","message":"newSession","stacktrace":"WebDriverError@chrome://marionette/content/error.js:178: ... et@chrome://marionette/content/server.js:245:8\n_onJSONObjectReady/<@chrome://marionette/content/transport.js:490:9\n"},null]
