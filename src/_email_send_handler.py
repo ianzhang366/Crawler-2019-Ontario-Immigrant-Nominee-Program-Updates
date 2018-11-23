@@ -1,10 +1,12 @@
 import smtplib
 from email.mime.text import MIMEText
 from log_control import log_main
+
 logger = log_main('log_pnp')
+import _config
 
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append(_config.SEN_CONFIG.data_location)
 import config
 
 def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
@@ -49,6 +51,6 @@ def _send_email(content, title= 'Alter! New updates @ PNP website'):
 
 if __name__ == '__main__':
 	content = 'mulit reciever testing'
-	_send_email(content, title= 'Alter! New updates @ PNP website')
-	# print config.SENT_EMAIL.gmail_user
+	# _send_email(content, title= 'Alter! New updates @ PNP website')
+	print config.SENT_EMAIL.gmail_user
 	# print config.LOG_CONFIG.location

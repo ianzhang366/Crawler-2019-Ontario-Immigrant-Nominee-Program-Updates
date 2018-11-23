@@ -2,10 +2,11 @@ from selenium import webdriver
 from pyvirtualdisplay import Display
 import time
 
-import sys
-sys.path.append('../../pnpCrawlerData')
-import config
+import _config
 
+import sys
+sys.path.append(_config.SEN_CONFIG.data_location)
+import config
 from log_control import log_main
 
 logger = log_main('log_pnp_getSourcePage')

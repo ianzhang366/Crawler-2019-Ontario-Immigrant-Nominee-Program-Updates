@@ -6,8 +6,10 @@ from dataProcess import parse_content, get_related_post
 from log_control import log_main
 from _email_send_handler import _send_email
 
+import _config
+
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append(_config.SEN_CONFIG.data_location)
 import config
 
 logger = log_main('log_pnp_data_logic')

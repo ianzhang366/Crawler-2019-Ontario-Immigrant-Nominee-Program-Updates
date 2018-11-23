@@ -1,6 +1,8 @@
 import logging
+import _config
+
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append(_config.SEN_CONFIG.data_location)
 import config
 
 # log_base_level = logging.DEBUG #console, console and stream is equal

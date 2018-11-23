@@ -8,10 +8,10 @@ from json_handler import save_dict_to_json, read_from_traget
 from _email_send_handler import _send_email
 from log_control import log_main
 logger = log_main('log_pnp_email_handler')
-os.chdir(sys.path[0])
+import _config
 
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append(_config.SEN_CONFIG.data_location)
 import config
 
 #########################Handle Email Format##########################
