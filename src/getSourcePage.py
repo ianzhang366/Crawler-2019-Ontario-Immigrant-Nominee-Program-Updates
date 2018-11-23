@@ -3,7 +3,7 @@ from pyvirtualdisplay import Display
 import time
 
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append('../pnpCrawlerData')
 import config
 
 from log_control import log_main

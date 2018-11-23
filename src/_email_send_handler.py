@@ -4,7 +4,7 @@ from log_control import log_main
 logger = log_main('log_pnp')
 
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append('../pnpCrawlerData')
 import config
 
 def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
