@@ -6,6 +6,7 @@ import _config
 
 import sys
 sys.path.append(_config.SEN_CONFIG.data_location)
+
 import config
 from log_control import log_main
 

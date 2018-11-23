@@ -9,7 +9,9 @@ from _email_send_handler import _send_email
 import _config
 
 import sys
+
 sys.path.append(_config.SEN_CONFIG.data_location)
+
 import config
 
 logger = log_main('log_pnp_data_logic')
