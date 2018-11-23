@@ -33,8 +33,7 @@ RUN pip3 install ipython[all]
 #RUN jupyter notebook --generate-config
 #adding the project to image
 ADD . /opt/pnpCrawler
-ADD ../pnpCrawlerData /opt/pnpCrawlerData
-ADD ../pnpCrawlerData/jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py 
+ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py 
 
 
 #COPY crontab /etc/cron.d/cool-task
@@ -50,3 +49,5 @@ RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python email_handler
 
 ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook --ip=0.0.0.0 --allow-root
 #ENTRYPOINT service cron start && /bin/bash
+
+
