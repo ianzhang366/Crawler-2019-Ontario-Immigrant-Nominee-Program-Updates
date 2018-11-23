@@ -33,7 +33,8 @@ RUN pip3 install ipython[all]
 #RUN jupyter notebook --generate-config
 #adding the project to image
 ADD . /opt/pnpCrawler
-ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py 
+ADD ../pnpCrawlerData /opt/pnpCrawlerData
+ADD ../pnpCrawlerData/jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py 
 
 
 #COPY crontab /etc/cron.d/cool-task
