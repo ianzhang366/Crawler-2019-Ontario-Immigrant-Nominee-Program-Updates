@@ -1,6 +1,0 @@
-2018-11-23 11:45:18.606:INFO:_email_send_handler:_send_email:36:ENTRY: main_send_email(content)
-2018-11-23 11:45:18.606:INFO:_email_send_handler:send_email_template:11:ENTRY: send_email_template(gmail_user, gmail_pwd, recipient, subject, content)
-2018-11-23 11:56:47.144:INFO:_email_send_handler:_send_email:36:ENTRY: main_send_email(content)
-2018-11-23 11:56:47.144:INFO:_email_send_handler:send_email_template:11:ENTRY: send_email_template(gmail_user, gmail_pwd, recipient, subject, content)
-2018-11-23 15:34:07.716:INFO:_email_send_handler:_send_email:36:ENTRY: main_send_email(content)
-2018-11-23 15:34:07.716:INFO:_email_send_handler:send_email_template:11:ENTRY: send_email_template(gmail_user, gmail_pwd, recipient, subject, content)
