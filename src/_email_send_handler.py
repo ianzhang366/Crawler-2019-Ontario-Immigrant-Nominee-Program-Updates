@@ -3,6 +3,9 @@ from email.mime.text import MIMEText
 from log_control import log_main
 logger = log_main('log_pnp')
 
+import sys
+sys.path.append('../../pnpCrawlerData')
+import config
 
 def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
 	logger.info('ENTRY: send_email_template(gmail_user, gmail_pwd, recipient, subject, content)')
@@ -31,9 +34,9 @@ def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
 
 def _send_email(content, title= 'Alter! New updates @ PNP website'):
 	logger.info('ENTRY: main_send_email(content)')
-	gmail_user = 'ian.zhang366@gmail.com'
-	gmail_pwd = 'p@ss4Goog'
-	recipient = ['ian.zhang366@gmail.com', 'lisa411854746@gmail.com']
+	gmail_user = config.SENT_EMAIL.gmail_user
+	gmail_pwd = config.SENT_EMAIL.gmail_pwd
+	recipient = config.SENT_EMAIL.recipient
 	# send email with content html
 	subject = title
 	# print 'in a'
@@ -47,4 +50,5 @@ def _send_email(content, title= 'Alter! New updates @ PNP website'):
 if __name__ == '__main__':
 	content = 'mulit reciever testing'
 	_send_email(content, title= 'Alter! New updates @ PNP website')
-	
+	# print config.SENT_EMAIL.gmail_user
+	# print config.LOG_CONFIG.location

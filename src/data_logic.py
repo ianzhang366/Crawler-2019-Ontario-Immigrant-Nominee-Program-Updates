@@ -6,13 +6,14 @@ from dataProcess import parse_content, get_related_post
 from log_control import log_main
 from _email_send_handler import _send_email
 
+import sys
+sys.path.append('../../pnpCrawlerData')
+import config
+
 logger = log_main('log_pnp_data_logic')
 
 def get_time_mark(past_days=-5):
 	logger.info('ENTRY: get_time_mark() past_days = ' + str(past_days))
-	# with open(time_mark_file, 'r') as f:
-	# 	read_data = f.read()
-	# f.closed
 	date = dt.today().date()
 	date += timedelta(past_days) # this variable determine how many day do we check backward for the updates
 	logger.info('EXIT: get_time_mark() %s', str(time.strptime(str(date), "%Y-%m-%d")))
@@ -21,12 +22,12 @@ def get_time_mark(past_days=-5):
 def parse_pnp_posts(time_mark):
 	logger.info('ENTRY: parse_pnp_posts() time_mark: '+ str(time_mark))
 	#set up initialzation figures
-	target_site = 'http://www.ontarioimmigration.ca/en/pnp/OI_PNPNEW.html'
-	targetElement = 'main_content' # div by class name
+	target_site = config.CRWALER_PARA.target_site
+	targetElement = config.CRWALER_PARA.targetElement # div by class name
 	raw_element = get_updates_page(target_site)
 
 	if raw_element:
-		keyword = "Masters Graduate"
+		keyword = config.CRWALER_PARA.keyword
 		try:
 			posts = parse_content(raw_element, targetElement, keyword)
 # 			print posts

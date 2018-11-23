@@ -10,6 +10,10 @@ from log_control import log_main
 logger = log_main('log_pnp_email_handler')
 os.chdir(sys.path[0])
 
+import sys
+sys.path.append('../../pnpCrawlerData')
+import config
+
 #########################Handle Email Format##########################
 
 def format_post(info, email_source):
@@ -82,9 +86,9 @@ def is_new_email(info, json_file, email_source):
 
 def _main():
 	time_check = dt.datetime.utcnow() - dt.timedelta(0, 4*3600)
-	print 'EST: ', time_check.strftime("%Y-%m-%d %H:%M:%S") 
-	logger.info('Main: email_handler_main() Run time is EST:%s', time_check.strftime("%Y-%m-%d %H:%M:%S"))
-	json_file = os.path.abspath('.') + '/output/past_posts.json'
+	print 'EST: ', time_check.strftime(config.LOG_CONFIG.datefmt) 
+	logger.info('Main: email_handler_main() Run time is EST:%s', time_check.strftime(config.LOG_CONFIG.datefmt))
+	json_file = config.OUTPUT.past_posts
 	time_mark = get_time_mark()
 	info = parse_pnp_posts(time_mark)
 # 	print info
@@ -105,7 +109,7 @@ def _main():
 
 if __name__ == '__main__':
 	time_check = dt.datetime.utcnow() - dt.timedelta(0, 4*3600)
-	print 'EST: ', time_check.strftime("%Y-%m-%d %H:%M:%S") 
+	print 'EST: ', time_check.strftime(config.LOG_CONFIG.datefmt) 
 	_main()
 
 
