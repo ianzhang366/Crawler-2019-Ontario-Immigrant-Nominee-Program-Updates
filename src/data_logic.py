@@ -7,7 +7,7 @@ from log_control import log_main
 from _email_send_handler import _send_email
 
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append('../pnpCrawlerData')
 import config
 
 logger = log_main('log_pnp_data_logic')

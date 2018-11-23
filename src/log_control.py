@@ -1,6 +1,6 @@
 import logging
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append('../pnpCrawlerData')
 import config
 
 # log_base_level = logging.DEBUG #console, console and stream is equal

@@ -11,7 +11,7 @@ logger = log_main('log_pnp_email_handler')
 os.chdir(sys.path[0])
 
 import sys
-sys.path.append('../../pnpCrawlerData')
+sys.path.append('../pnpCrawlerData')
 import config
 
 #########################Handle Email Format##########################
