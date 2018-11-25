@@ -2,7 +2,7 @@ import logging
 import _config
 
 import sys
-
+print _config.SEN_CONFIG.data_location
 sys.path.append(_config.SEN_CONFIG.data_location)
 
 import config
