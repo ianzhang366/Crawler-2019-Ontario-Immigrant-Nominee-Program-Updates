@@ -1,12 +1,14 @@
 import logging
-import _config
 
+import _config
 import sys
+
 print _config.SEN_CONFIG.data_location
 sys.path.append(_config.SEN_CONFIG.data_location)
 
 import config
 
+print config.LOG_CONFIG.location
 # log_base_level = logging.DEBUG #console, console and stream is equal
 # log_to_file = logging.INFO #log file
 # print_console = False # whether print log info at console
