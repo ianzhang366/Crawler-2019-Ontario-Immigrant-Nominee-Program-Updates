@@ -31,9 +31,14 @@ def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
 		server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
 		server.ehlo()
 		server.starttls()
+		#server.ehlo()
+		logger.debug(server)
+		logger.debug(gmail_user)
+		logger.debug(gmail_pwd)
+
 		server.login(gmail_user, gmail_pwd)
 		server.sendmail(gmail_user, recipients, msg.as_string())
-		server.close()
+		server.quit()
 		logger.info('EXIT')
 		return True
 	except Exception as err:
@@ -57,6 +62,6 @@ def _send_email(content, title= EMAIL_TITLE):
 
 if __name__ == '__main__':
 	content = 'mulit reciever testing'
-	# _send_email(content, title= 'Alter! New updates @ PNP website')
+	_send_email(content, title= 'Alter! New updates @ PNP website')
 	print config.SENT_EMAIL.gmail_user
 	# print config.LOG_CONFIG.location
