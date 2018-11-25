@@ -13,5 +13,5 @@ if docker ps --filter "name=${C_NAME}" | grep -i "${C_NAME}"; then
 	echo -e "Removing /${C_NAME}"
 	docker rm "/${C_NAME}"
 fi 
-docker run -dit -p 8888:8888 --name ${C_NAME} pnp_crawler:${VERSION}
+docker run -dit -p 8888:8888 --name ${C_NAME} ${C_NAME}:${VERSION}
 docker ps --filter "name=${C_NAME}"
