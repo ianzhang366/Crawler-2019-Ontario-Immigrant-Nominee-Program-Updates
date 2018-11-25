@@ -57,6 +57,6 @@ def _send_email(content, title= EMAIL_TITLE):
 
 if __name__ == '__main__':
 	content = 'mulit reciever testing'
-	# _send_email(content, title= 'Alter! New updates @ PNP website')
-	print config.SENT_EMAIL.gmail_user
+	_send_email(content, title= 'Alter! New updates @ PNP website')
+	# print config.SENT_EMAIL.gmail_user
 	# print config.LOG_CONFIG.location
