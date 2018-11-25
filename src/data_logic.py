@@ -16,15 +16,22 @@ import config
 
 logger = log_main('log_pnp_data_logic')
 
+TIMT_FORMAT="%Y-%m-%d"
+
+
 def get_time_mark(past_days=-5):
-	logger.info('ENTRY: get_time_mark() past_days = ' + str(past_days))
+	logger.info('ENTRY')
+	logger.debug('ENTRY: get_time_mark() past_days = ' + str(past_days))
+
 	date = dt.today().date()
 	date += timedelta(past_days) # this variable determine how many day do we check backward for the updates
-	logger.info('EXIT: get_time_mark() %s', str(time.strptime(str(date), "%Y-%m-%d")))
-	return time.strptime(str(date), "%Y-%m-%d")
+	logger.debug('get_time_mark() %s', str(time.strptime(str(date), TIMT_FORMAT)))
+	logger.info('EXIT')
+	return time.strptime(str(date), TIMT_FORMAT)
 
 def parse_pnp_posts(time_mark):
-	logger.info('ENTRY: parse_pnp_posts() time_mark: '+ str(time_mark))
+	logger.info('ENTRY')
+	logger.debug('parse_pnp_posts() time_mark: '+ str(time_mark))
 	#set up initialzation figures
 	target_site = config.CRWALER_PARA.target_site
 	targetElement = config.CRWALER_PARA.targetElement # div by class name
@@ -36,22 +43,22 @@ def parse_pnp_posts(time_mark):
 			posts = parse_content(raw_element, targetElement, keyword)
 # 			print posts
 			if len(posts.keys()) == 0: # if we get 0 posts then it means the parse function is broken
-				start = '<html><head></head><body>'
-				end =   '</body></html>'
-				formated ="<b>It seems the parse function of the updates page is not running correctly.</b>"
-				_send_email(start+formated+end, 'Updates Debug Email')
+				start = config.EMIL_CONTENT.HTML_HEADER
+				end =  config.EMIL_CONTENT.HTML_FOOTER
+				formated = config.EMIL_CONTENT.PARSE_FUNC_FAIL_CONTENT
+				_send_email(start+formated+end, config.EMIL_CONTENT.DEBUG_EMAIL_TITLE)
 			start_posts = get_related_post(posts, time_mark)
 			if start_posts:
-				logger.info('EXIT: parse_pnp_posts() %s', start_posts[0])
+				logger.debug(' parse_pnp_posts() %s', start_posts[0])
+				logger.info('EXIT')
 			else:
-				logger.info('EXIT: parse_pnp_posts() []', )
+				logger.debug('parse_pnp_posts() []', )
+				logger.info('EXIT')
 			return start_posts
 		except Exception as err:
 			logger.exception(err)
-			# print 'parse_pnp_posts: ', err
-			# logger_debug.exception(err)
 	else:
-		logger.info('EXIT: parse_pnp_posts() False')
+		logger.info('EXIT')
 		return False
 
 
