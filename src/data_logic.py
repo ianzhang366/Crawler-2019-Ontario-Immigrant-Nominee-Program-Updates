@@ -45,7 +45,7 @@ def parse_pnp_posts(time_mark):
 	#set up initialzation figures
 	target_site = config.CRWALER_PARA.target_site
 	targetElement = config.CRWALER_PARA.targetElement # div by class name
-	raw_html = get_updates_page(target_site) #
+	raw_html = get_updates_page(target_site)
 
 	if raw_html:
 		keyword = config.CRWALER_PARA.keyword
@@ -71,7 +71,7 @@ def parse_pnp_posts(time_mark):
 			logger.exception(err)
 	else:
 		logger.info('EXIT')
-		return False
+		return []
 
 
 ######################### Handle Main logic ##########################

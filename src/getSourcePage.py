@@ -34,7 +34,6 @@ def get_updates_page(target_site):
 			else:
 				logger.debug('get_updates_page() %s',raw_html[0:100])
 				logger.info('Exit')
-
 			return raw_html
 		except Exception as err:
 			logger.info(err)
