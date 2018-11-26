@@ -11,8 +11,12 @@ import config
 # log_to_file = logging.INFO #log file
 # print_console = False # whether print log info at console
 # print log_base_level
-######################### Logging ##########################
 def log_main(log_name, log_config= config.LOG_CONFIG):
+    """
+    Set up logger for the whole project
+    Input: log_name(string), log_config(class)
+    Return: logger(class)
+    """
     # print log_file
     logger = logging.getLogger(log_name)
     logger.setLevel(config.LOG_CONFIG.log_base_level) #at root log level
@@ -38,6 +42,7 @@ def log_main(log_name, log_config= config.LOG_CONFIG):
 
 if __name__ == '__main__':
     log_main('a', config.LOG_CONFIG)
+    print log_main.__doc__
     # print config.LOG_CONFIG.location
 
 

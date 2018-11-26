@@ -1,4 +1,4 @@
-# ../../pnpCrawlerData
+# ../pnpCrawlerData
 class SENT_EMAIL:
     gmail_user='...'
     gmail_pwd='...'

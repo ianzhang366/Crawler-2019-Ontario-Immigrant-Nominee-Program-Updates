@@ -1,6 +1,6 @@
 #!/bin/bash
 #this script is load the image built by build_docker_image.sh and run it
-echo -e 'Need 2 parameters to run.\n Para1: indicate the image version. \n Para2: indicate the container name.\n'
+echo -e 'Need 2 parameters to run.\n Para1: indicate the image name. \n Para2: indicate the image version.\n'
 
 C_NAME=$1;
 VERSION=$2;

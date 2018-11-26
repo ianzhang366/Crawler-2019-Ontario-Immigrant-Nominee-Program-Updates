@@ -15,8 +15,12 @@ SMTP_SERVER='smtp.gmail.com'
 SMTP_PORT=587
 
 def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
+	"""
+	Set up email communication details
+	Inputs: user's email name(string) and pwd(string); recipients (list), subject(string), content(string)
+	Return: Boolean, if sent success then True
+	"""
 	logger.info('ENTRY')
-# Create message container - the correct MIME type is multipart/alternative.
 	try:
 		try:
 			msg = MIMEText(content,'html')
@@ -46,6 +50,11 @@ def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
 		return False
 
 def _send_email(content, title= EMAIL_TITLE):
+	"""
+	call send_email_template() to send the email
+	Input: content(string), title(string)
+	Return: Boolean, if sent success then True
+	"""
 	logger.info('ENTRY')
 	gmail_user = config.SENT_EMAIL.gmail_user
 	gmail_pwd = config.SENT_EMAIL.gmail_pwd
@@ -62,4 +71,4 @@ def _send_email(content, title= EMAIL_TITLE):
 
 if __name__ == '__main__':
 	content = 'mulit reciever testing'
-	_send_email(content, title= 'Alter! New updates @ PNP website')
+	assert _send_email(content, title= 'Alter! New updates @ PNP website'), True
