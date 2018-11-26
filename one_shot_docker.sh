@@ -48,8 +48,9 @@ build_run(){
 C_NAME=$1;
 VERSION=$2;
 
-if [ -z "$1" || "$2"] ; then
-    printUsage
-    exit 1
+if [ -z "$1"] || [-z "$2"]; then
+	echo "Please give me inputs suggested as following"
+	printUsage
+	exit 1
 fi
 build_run
