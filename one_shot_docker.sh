@@ -16,7 +16,6 @@ docker build -t ${C_NAME}:${VERSION} -f /home/pnpCrawler/Dockerfile .
 SCRIPT_COMPLETE_TIME=`date`;
 echo -e "\n\n Build docker image script complete time: ${SCRIPT_COMPLETE_TIME}";
 
-docker ps --format "table {{.ID}}\t{{.Image}}\t{{.CreatedAt}}" 
 
 
 SCRIPT_COMPLETE_TIME=`date`;
@@ -27,7 +26,8 @@ if docker ps --filter "name=${C_NAME}" | grep -ic "${C_NAME}"; then
     docker kill $(docker ps -q)
 fi 
 docker run -dit -p 8888:8888 --name "${C_NAME}_${VERSION}" ${C_NAME}:${VERSION}
-docker ps --filter "name=${C_NAME}"
+
+docker ps  --filter "name=${C_NAME}" --format "table {{.ID}}\t{{.Image}}\t{{.CreatedAt}}" 
 
 SCRIPT_COMPLETE_TIME=`date`;
 echo -e "\n\n Docker imag e${C_NAME}:${VERSION} started at: ${SCRIPT_COMPLETE_TIME}";
