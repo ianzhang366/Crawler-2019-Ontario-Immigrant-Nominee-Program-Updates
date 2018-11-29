@@ -1,2 +1,2 @@
 #!/bin/bash
-> /opt/pnpAtPythonanywhere/output/log_daily.log
+> /opt/pnpCrawler/pnpCrawlerData/output/log_daily.log

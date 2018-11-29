@@ -41,7 +41,7 @@ ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 
 #RUN (crontab -l ; echo "TZ=America/Toronto")| crontab -
 RUN (crontab -l ; echo "0 */2 * * * /opt/pnpCrawler/src/clear_log.sh")| crontab -
-RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python email_handler.py")| crontab -
+RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python perform_execute.py")| crontab -
 
 
 #CMD tail -f /dev/null #this line will make the container keeps running
