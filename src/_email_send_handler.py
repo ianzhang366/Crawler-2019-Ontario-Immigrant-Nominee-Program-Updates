@@ -1,6 +1,6 @@
 """
- _send_email(content, title= EMAIL_TITLE)
- send_email_template(gmail_user, gmail_pwd, recipients, subject, content)
+ _send_email(email_content, title= EMAIL_TITLE)
+ send_email_template(gmail_user, gmail_pwd, recipients, subject, email_content)
 
  _send_email() is mainly method for sending a email
 """
@@ -20,17 +20,17 @@ EMAIL_TITLE = 'Alter! New updates @ PNP website'
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
-def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
+def send_email_template(gmail_user, gmail_pwd, recipients, subject, email_content):
     """
     Set up email communication details
     Inputs: user's email name(string) and pwd(string); recipients (list), subject(string), 
-            content(string)
+            email_content(string)
     Return: Boolean, if sent success then True
     """
     LOGGER.info('ENTRY')
     try:
         try:
-            msg = MIMEText(content, 'html')
+            msg = MIMEText(email_content, 'html')
             msg['Subject'] = subject
             msg['From'] = gmail_user
 
@@ -56,20 +56,20 @@ def send_email_template(gmail_user, gmail_pwd, recipients, subject, content):
         LOGGER.exception(err)
         return False
 
-def _send_email(content, title=EMAIL_TITLE):
+def _send_email(email_content, title=EMAIL_TITLE):
     """
     call send_email_template() to send the email
-    Input: content(string), title(string)
+    Input: email_content(string), title(string)
     Return: Boolean, if sent success then True
     """
     LOGGER.info('ENTRY')
     gmail_user = config.SENT_EMAIL.gmail_user
     gmail_pwd = config.SENT_EMAIL.gmail_pwd
     recipient = config.SENT_EMAIL.recipient
-    # send email with content html
+    # send email with email_content html
     subject = title
     try:
-        send_email_template(gmail_user, gmail_pwd, recipient, subject, content)
+        send_email_template(gmail_user, gmail_pwd, recipient, subject, email_content)
         LOGGER.info('EXIT')
         return True
     except Exception as err:
@@ -77,5 +77,5 @@ def _send_email(content, title=EMAIL_TITLE):
         return False
 
 if __name__ == '__main__':
-    content = 'mulit reciever testing'
-    assert _send_email(content, title='Alter! New updates @ PNP website'), True
+    email_content = 'mulit reciever testing'
+    assert _send_email(email_content, title='Alter! New updates @ PNP website'), True
