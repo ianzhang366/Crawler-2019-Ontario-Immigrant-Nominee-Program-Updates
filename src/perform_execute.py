@@ -109,7 +109,7 @@ def is_new_post(past_posts, cur_posts):
             #here we used the content to generate a key for past_post dictionary
             #in this way we can minimize the storage of past_post
             msg = '%'.join([i for i in item['post_content']]).replace(' ', '').lower()
-            shorten_msg = [msg[i] for i in range(len(msg)) if i % 3 == 0]
+            shorten_msg = [msg[i] for i in range(len(msg)) if i % 6 == 0]
             shorten_msg = ''.join(shorten_msg)
             if (shorten_msg in past_posts.keys()) == False:
                 save_flag = True
@@ -117,9 +117,10 @@ def is_new_post(past_posts, cur_posts):
                 need_to_send.append(item)
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
+        return [' \t'.join(str(i)) for i in need_to_send][0]
     LOGGER.debug('need_to_send',need_to_send)
     LOGGER.info('EXIT')
-    return [' \t'.join(str(i)) for i in need_to_send][0]
+    return []
 
 def is_new_email(cur_posts, JSON_FILE, email_source):
     """
