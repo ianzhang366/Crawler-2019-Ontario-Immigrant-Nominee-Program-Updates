@@ -36,14 +36,15 @@ def format_post(pnp_posts, content, email_source):
     end = config.EMAIL_CONTENT.HTML_FOOTER
     formated = content
     send_from = '<p style="color:#FFAA00"><b>' + email_source+ '</b></p>'
-    for item in pnp_posts:
-        formated += '<br>'
-        formated += '<b>' + item['timeStamp'] + '</b>'
-        formated += '<br>'
-        for i in item['content']:
-            formated += '<p>' + i + '</p>'
+    if pnp_posts:
+        for item in pnp_posts:
             formated += '<br>'
-        formated += '<br><br>'
+            formated += '<b>' + item['timeStamp'] + '</b>'
+            formated += '<br>'
+            for i in item['content']:
+                formated += '<p>' + i + '</p>'
+                formated += '<br>'
+            formated += '<br><br>'
     whole = start+formated+send_from+end
     LOGGER.debug('format_post() %s', whole[-9:])
     LOGGER.info('EXIT')
