@@ -32,8 +32,8 @@ def format_post(pnp_posts, content, email_source):
     Return: whole(string, HTML)
     """
     LOGGER.info('ENTRY')
-    start = config.EMIL_CONTENT.HTML_HEADER
-    end = config.EMIL_CONTENT.HTML_FOOTER
+    start = config.EMAIL_CONTENT.HTML_HEADER
+    end = config.EMAIL_CONTENT.HTML_FOOTER
     formated = content
     send_from = '<p style="color:#FFAA00"><b>' + email_source+ '</b></p>'
     for item in pnp_posts:
@@ -63,11 +63,11 @@ def daily_check(pnp_posts, email_source):
     past_posts = read_from_traget(JSON_FILE)
     if time_check.hour == 17 or time_check.hour == 8:
         if time_check.hour == 17:
-            content = config.EMIL_CONTENT.END_OF_DAY_CONTENT
-            title = config.EMIL_CONTENT.END_OF_DAY_TITLE
+            content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
+            title = config.EMAIL_CONTENT.END_OF_DAY_TITLE
         else:
-            content = config.EMIL_CONTENT.BEGIN_OF_DAY_CONTENT
-            title = config.EMIL_CONTENT.BEGIN_OF_DAY_TITLE
+            content = config.EMAIL_CONTENT.BEGIN_OF_DAY_CONTENT
+            title = config.EMAIL_CONTENT.BEGIN_OF_DAY_TITLE
         
         d_msg = format_post(pnp_posts, content, email_source)
         if (d_short_msg in past_posts.keys()) == False:
