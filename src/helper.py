@@ -3,7 +3,9 @@ Some time format convert functions
 """
 
 import time
+import sys
 
+import datetime
 from datetime import timedelta
 from datetime import datetime as dt
 
@@ -60,5 +62,5 @@ def create_time_check_string():
     Return: time_check(datetime), str(string)
     """
     #utc to ESTs
-    time_check = dt.datetime.utcnow() - dt.timedelta(0, 4*3600) #utc to ESTs
+    time_check = datetime.datetime.utcnow() - datetime.timedelta(0, 4*3600) #utc to ESTs
     return time_check, str(time_check.year)+str(time_check.month)+str(time_check.day)+str(time_check.hour)
