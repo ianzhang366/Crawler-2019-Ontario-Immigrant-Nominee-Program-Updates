@@ -169,7 +169,7 @@ def _main():
     cur_posts = parse_pnp_posts(time_marker)
 
     if cur_posts:
-        LOGGER.debug('email_handler_main() Posts: '+ ' '.join(cur_posts[0]['content']))
+        LOGGER.debug('email_handler_main() Posts: '+ ' '.join(cur_posts[0]['post_content']))
         email_machine_name = platform.uname()[1]
         is_new_email(cur_posts, JSON_FILE, email_machine_name)
         LOGGER.debug('email_handler_main() Posts: %s', cur_posts[-20:])
