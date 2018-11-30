@@ -36,7 +36,7 @@ def read_from_traget(json_file):
     LOGGER.info('ENTRY')
     LOGGER.debug('read_from_traget() json_file: '+ json_file)
     target_dict = json.load(open(json_file))
-    LOGGER.debug('read_from_traget() target_dict: '+ target_dict)
+    LOGGER.debug('read_from_traget() target_dict: %s', target_dict)
     LOGGER.info('EXIT')
     
     return target_dict
