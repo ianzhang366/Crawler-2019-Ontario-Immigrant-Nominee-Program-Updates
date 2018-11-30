@@ -180,7 +180,7 @@ def get_updates_page(target_site):
                 LOGGER.info('Exit')
             return raw_html
         except Exception as err:
-            LOGGER.info(err)
+            LOGGER.debug(err)
 
 def parse_pnp_posts(time_marker):
     """
