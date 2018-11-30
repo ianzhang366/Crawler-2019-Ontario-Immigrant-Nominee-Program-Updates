@@ -117,9 +117,10 @@ def is_new_post(past_posts, cur_posts):
                 need_to_send.append(item)
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
-    LOGGER.debug('need_to_send',need_to_send)
+        return [' \t'.join(str(i)) for i in need_to_send][0]
+    LOGGER.debug('need_to_send', out_html[-30:])
     LOGGER.info('EXIT')
-    return [' \t'.join(str(i)) for i in need_to_send][0]
+    return []
 
 def is_new_email(cur_posts, JSON_FILE, email_source):
     """
