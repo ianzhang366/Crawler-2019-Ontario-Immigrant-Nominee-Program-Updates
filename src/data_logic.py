@@ -76,10 +76,10 @@ def pasered_zero_send_email():
     """
     LOGGER.info('ENTRY')
     try:
-        start = config.EMIL_CONTENT.HTML_HEADER
-        end = config.EMIL_CONTENT.HTML_FOOTER
-        formated = config.EMIL_CONTENT.PARSE_FUNC_FAIL_CONTENT
-        _send_email(start+formated+end, config.EMIL_CONTENT.DEBUG_EMAIL_TITLE)
+        start = config.EMAIL_CONTENT.HTML_HEADER
+        end = config.EMAIL_CONTENT.HTML_FOOTER
+        formated = config.EMAIL_CONTENT.PARSE_FUNC_FAIL_CONTENT
+        _send_email(start+formated+end, config.EMAIL_CONTENT.DEBUG_EMAIL_TITLE)
         LOGGER.info('EXIT')
     except Exception as err:
         LOGGER.exception(err)
