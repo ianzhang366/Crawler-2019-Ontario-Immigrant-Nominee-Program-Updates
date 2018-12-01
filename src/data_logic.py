@@ -226,8 +226,10 @@ def parse_pnp_posts(time_marker):
                 return past_posts
             pasered_zero_send_email()
             LOGGER.info('EXIT')
-            except Exception as err:
+            return []
+        except Exception as err:
             LOGGER.exception(err)
+            return []
     else:
         LOGGER.info('EXIT')
         return []
