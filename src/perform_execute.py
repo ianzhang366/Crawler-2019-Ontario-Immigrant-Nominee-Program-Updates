@@ -119,7 +119,7 @@ def is_new_post(past_posts, cur_posts):
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
         return [' \t'.join(str(i)) for i in need_to_send][0]
-    LOGGER.debug('need_to_send',need_to_send)
+    LOGGER.debug('need_to_send %s',need_to_send)
     LOGGER.info('EXIT')
     return []
 
