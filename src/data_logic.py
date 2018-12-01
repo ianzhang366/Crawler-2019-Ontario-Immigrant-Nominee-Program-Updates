@@ -111,13 +111,13 @@ def parse_content(raw_html, target_element, keyword):
             # print type(post_content), post_content
             for post in post_contents:
                 data.append(post.text)
-        if data == []:
-            LOGGER.debug('parse_content() %s', data)
+        if data:
+            LOGGER.debug('parse_content() %s', data[0])
             LOGGER.info('Exit')
-            return False
-        LOGGER.debug('parse_content() %s', data[0])
+            return create_post_dict(data)
+        LOGGER.debug('parse_content() %s', data)
         LOGGER.info('Exit')
-        return create_post_dict(data)
+        return False
     except Exception as err:
         # print 'dataProcess: ', err
         LOGGER.exception(err)
@@ -210,24 +210,23 @@ def parse_pnp_posts(time_marker):
             posts = parse_content(raw_html, targetElement, keyword)
             # if we get 0 posts, send email to indicate that the parse function is broken
             if posts.keys():
-                pasered_zero_send_email()
-            #filter the parsed result by date, time_marker
-            #past_posts =     
-            # [
-            #     {
-            #         post_content:[], 
-            #         timeStamp:[string]
-            #     },
-            # ]
-            past_posts = get_related_post(posts, time_marker)
-            if past_posts:
-                LOGGER.debug(' parse_pnp_posts() %s', past_posts[0])
-                LOGGER.info('EXIT')
-            else:
-                LOGGER.debug('parse_pnp_posts() []', )
-                LOGGER.info('EXIT')
-            return past_posts
-        except Exception as err:
+                    
+                #filter the parsed result by date, time_marker
+                #past_posts =     
+                # [
+                #     {
+                #         post_content:[], 
+                #         timeStamp:[string]
+                #     },
+                # ]
+                past_posts = get_related_post(posts, time_marker)
+                if past_posts:
+                    LOGGER.debug(' parse_pnp_posts() %s', past_posts[0])
+                    LOGGER.info('EXIT')
+                return past_posts
+            pasered_zero_send_email()
+            LOGGER.info('EXIT')
+            except Exception as err:
             LOGGER.exception(err)
     else:
         LOGGER.info('EXIT')
