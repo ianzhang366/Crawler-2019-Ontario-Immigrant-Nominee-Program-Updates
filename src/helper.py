@@ -26,18 +26,15 @@ def time_convert(time_string):
     Input: time_string(string)
     Return: time_mark(datetime)
     """
-    LOGGER.info('ENTRY')
     # LOGGER.debug('ENTRY: time_convert() time_string: '+ time_string)
     tmp = time_string.replace('u', '')
     tmp = time_string.replace(',', '')
     tmp = tmp.replace('th', '')
     try:
         time_mark = time.strptime(tmp, "%b %d %Y")
-        LOGGER.info('EXIT')
         return time_mark
     except Exception as err:
         time_mark = time.strptime(tmp, "%B %d %Y")
-        LOGGER.info('EXIT')
         return time_mark
 
 def get_time_marker(past_days=-5):
@@ -46,13 +43,10 @@ def get_time_marker(past_days=-5):
     Input: past_days(int)
     Return: (datetime)
     """
-    LOGGER.info('ENTRY')
-    LOGGER.debug('ENTRY: get_time_marker() past_days = ' + str(past_days))
     date = dt.today().date()
     # this variable determine how many day do we check backward for the updates
     date += timedelta(past_days)
     LOGGER.debug('get_time_marker() %s', str(time.strptime(str(date), TIMT_FORMAT)))
-    LOGGER.info('EXIT')
     return time.strptime(str(date), TIMT_FORMAT)
 
 def create_time_check_string():
