@@ -37,14 +37,13 @@ def format_post(pnp_posts, content, email_source):
     formated = content
     send_from = '<p style="color:#FFAA00"><b>' + email_source+ '</b></p>'
     if pnp_posts:
-        for item in pnp_posts:
+        for post_time, post_content in pnp_posts:
             formated += '<br>'
-            formated += ('<b>' + item['timeStamp'] + '</b>')
-            formated += '<br>'
-            for i in item['post_content']:
-                formated += '<p>' + i + '</p>'
+            for line in post_content:
+                formated += '<br><b>' + line + '</b>'
                 formated += '<br>'
             formated += '<br><br>'
+    
     whole = start+formated+send_from+end
     LOGGER.debug('format_post() %s', whole[-9:])
     LOGGER.info('EXIT')
@@ -90,12 +89,9 @@ def is_new_post(past_posts, cur_posts):
     Input: past_posts(dict), pnp_posts(list of dict)
     Return: need_to_send(list)
     # cur_posts =
-    # [
     #     {
-    #         post_content:[], 
-    #         timeStamp:[string]
+    #         timeStamp:post_content
     #     },
-    # ]
 
     past_post={
         shorten_msg:timeStamp[string] 
@@ -106,16 +102,17 @@ def is_new_post(past_posts, cur_posts):
     save_flag = False
     #read the past posts from the JSON file location
     if cur_posts:
-        for item in cur_posts:
+        for post in cur_posts:
+            post_time, post_content = post
             #here we used the content to generate a key for past_post dictionary
             #in this way we can minimize the storage of past_post
-            msg = '%'.join([i for i in item['post_content']]).replace(' ', '').lower()
+            msg = '%'.join([i for i in post_content]).replace(' ', '').lower()
             shorten_msg = [msg[i] for i in range(len(msg)) if i % 6 == 0]
             shorten_msg = ''.join(shorten_msg)
             if (shorten_msg in past_posts.keys()) == False:
                 save_flag = True
-                past_posts[shorten_msg] = item['timeStamp']
-                need_to_send.append(item)
+                past_posts[shorten_msg] = post_time 
+                need_to_send.append((post_time, post_content))
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
         return need_to_send
@@ -171,10 +168,9 @@ def _main():
     # ]
     cur_posts = parse_pnp_posts(time_marker)
     if cur_posts:
-        LOGGER.debug('email_handler_main() Posts: '+ ' '.join(cur_posts[0]['post_content']))
+        LOGGER.debug('email_handler_main() Posts: %s', cur_posts)
         email_machine_name = platform.uname()[1]
         is_new_email(cur_posts, JSON_FILE, email_machine_name)
-        LOGGER.debug('email_handler_main() Posts: %s', cur_posts[-20:])
         LOGGER.info('EXIT')
         return True
     LOGGER.info('EXIT')

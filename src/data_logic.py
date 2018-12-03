@@ -34,11 +34,9 @@ def create_post_dict(data):
     Get all the posts at the first page of the target site , which can't be none
     Input: data(list)
     Return: post(dict) 
-        {count: 
-            {	post_content:[], 
-                timeStamp:[string] 
+            {	
+                timeStamp:post_content
             }
-        }
     """
     # data is list
     LOGGER.info('ENTRY')
@@ -46,8 +44,7 @@ def create_post_dict(data):
         post = defaultdict()
         #find time stamp pattern within lines, eg: .*d{2}+,d{4}
         time_p = re.compile(r"""^[A-Z].*\d{4}$""") 
-        num = 1
-        cnt = 0
+        flag = 0
         for line in data:
             #building the post by reading the timeStamp stream
             #1990-10-1
@@ -58,12 +55,17 @@ def create_post_dict(data):
             #line d
             if time_p.search(line):
                 # print "time matched: ", line
-                post[num] = {'timeStamp': line, 'post_content': []}
-                cnt = num
-                num += 1
-            else:
-                if cnt:
-                    post[cnt]['post_content'].append(line)
+                time_stamp = line
+                post[time_stamp] = []
+                flag = 1
+                #post[num] = {'timeStamp': line, 'post_content': []}
+                #cnt = num
+                #num += 1
+            #else:
+                #if cnt:
+                 #   post[cnt]['post_content'].append(line)
+            if flag:
+                post[time_stamp].append(line)
         LOGGER.debug('create_post_dict() %s', post.keys())
         LOGGER.info('EXIT')
         return post
@@ -89,12 +91,7 @@ def parse_content(raw_html, target_element, keyword):
     """
     Get all the posts at the first page of the target site , which can't be none
     Input: raw_html(string), target_element(string), keyword(string)
-    Return: posts(dict) 
-        {count: # count itself is used to collapse the content by timestap
-            {	post_content:[], 
-                timeStamp:[string] 
-            }
-        }
+    Return: posts[], which contains the whole html page, top to bottom in string
     eg:
         timeStamp:#1990-10-1
             post_content:[#line a, #line b]
@@ -126,17 +123,11 @@ def parse_content(raw_html, target_element, keyword):
 def get_related_post(posts, last_timestamp):
     """
     Filter the parsed result after last_timestamp
-    # posts(dict) 
-    # {count: # count itself is used to collapse the content by timestap
-    #     {	post_content:[], 
-    #         timeStamp:[string] 
-    #     }
-    # }
+    # posts[], which includes the html page string, from top to botton
     # Input: posts(list), last_timestamp(string)
     # Return: time_filter_posts(list of dict)
     # [
     #     {
-    #         post_content:[], 
     #         timeStamp:[string]
     #     },
     # ]
@@ -147,12 +138,12 @@ def get_related_post(posts, last_timestamp):
     #basiclly, first, we flat the dict, posts, to value{{post_content:[], timeStamp:[string]}}
     #second, we convert the timestamp at the flated dict, value, to datetime stamp
     #third, we filter out the content by the time condition
-    for key, value in posts.items():
+    for post in posts.items():
         # print last_timestamp, value['timeStamp']
        # print 'input: %s', last_timestamp, 't %s', time_convert(value['timeStamp'])
-        if (last_timestamp < time_convert(value['timeStamp'])):
-            LOGGER.debug(str(last_timestamp)+', '+str(value['timeStamp']))
-            time_filter_posts.append(posts[key])
+        if (last_timestamp < time_convert(post[0])):
+            LOGGER.debug(str(last_timestamp)+', '+post[0])
+            time_filter_posts.append(post)
                 # print value['timeStamp']
     LOGGER.debug('filter_by_time() %s', posts.keys())
     LOGGER.info('EXIT')
