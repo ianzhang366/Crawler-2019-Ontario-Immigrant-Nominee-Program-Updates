@@ -61,7 +61,7 @@ def daily_check(email_source):
     time_check, d_short_msg = create_time_check_string()
     save_flag = 0
     past_posts = read_from_traget(JSON_FILE)
-    if time_check.hour == 17 or time_check.hour == 8:
+    if time_check.hour == 17 or time_check.hour == 10:
         if time_check.hour == 17:
             content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
             title = config.EMAIL_CONTENT.END_OF_DAY_TITLE
@@ -71,12 +71,11 @@ def daily_check(email_source):
         
         d_msg = format_post([], content, email_source)
         if (d_short_msg in past_posts.keys()) == False:
-            save_flag = True
             past_posts[d_short_msg] = d_short_msg
+            save_dict_to_json(past_posts, JSON_FILE) 
             if _send_email(d_msg, title=title):
+                LOGGER.info('EXIT')
                 return True
-    if save_flag:
-        save_dict_to_json(past_posts, JSON_FILE)
     LOGGER.debug('is_new_email() check hour:%s', time_check)
     LOGGER.info('EXIT')
     return False
@@ -106,8 +105,13 @@ def is_new_post(past_posts, cur_posts):
             post_time, post_content = post
             #here we used the content to generate a key for past_post dictionary
             #in this way we can minimize the storage of past_post
+<<<<<<< HEAD
             msg = '%'.join([i for i in post_content]).replace(' ', '').lower()
             shorten_msg = [msg[i] for i in range(len(msg)) if i % 6 == 0]
+=======
+            msg = '%'.join([i for i in item['post_content']]).replace(' ', '').lower()
+            shorten_msg = [msg[i] for i in range(len(msg)) if i % 8 == 0]
+>>>>>>> 2a752d73e2727aa17221a2d0e3b88be25f443f21
             shorten_msg = ''.join(shorten_msg)
             if (shorten_msg in past_posts.keys()) == False:
                 save_flag = True
@@ -115,6 +119,7 @@ def is_new_post(past_posts, cur_posts):
                 need_to_send.append((post_time, post_content))
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
+        LOGGER.info('EXIT')
         return need_to_send
     LOGGER.debug('need_to_send %s',need_to_send)
     LOGGER.info('EXIT')
@@ -144,8 +149,8 @@ def is_new_email(cur_posts, JSON_FILE, email_source):
             LOGGER.info('EXIT')
             return True
     daily_check(email_source)
-    return False
     LOGGER.info('EXIT')
+    return False
 
 def _main():
     """
