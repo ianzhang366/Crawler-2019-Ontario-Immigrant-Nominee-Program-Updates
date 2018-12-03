@@ -105,13 +105,8 @@ def is_new_post(past_posts, cur_posts):
             post_time, post_content = post
             #here we used the content to generate a key for past_post dictionary
             #in this way we can minimize the storage of past_post
-<<<<<<< HEAD
             msg = '%'.join([i for i in post_content]).replace(' ', '').lower()
             shorten_msg = [msg[i] for i in range(len(msg)) if i % 6 == 0]
-=======
-            msg = '%'.join([i for i in item['post_content']]).replace(' ', '').lower()
-            shorten_msg = [msg[i] for i in range(len(msg)) if i % 8 == 0]
->>>>>>> 2a752d73e2727aa17221a2d0e3b88be25f443f21
             shorten_msg = ''.join(shorten_msg)
             if (shorten_msg in past_posts.keys()) == False:
                 save_flag = True
