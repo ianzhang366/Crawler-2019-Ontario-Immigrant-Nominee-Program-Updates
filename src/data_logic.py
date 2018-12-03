@@ -149,6 +149,7 @@ def get_related_post(posts, last_timestamp):
     #third, we filter out the content by the time condition
     for key, value in posts.items():
         # print last_timestamp, value['timeStamp']
+       # print 'input: %s', last_timestamp, 't %s', time_convert(value['timeStamp'])
         if (last_timestamp < time_convert(value['timeStamp'])):
             LOGGER.debug(str(last_timestamp)+', '+str(value['timeStamp']))
             time_filter_posts.append(posts[key])

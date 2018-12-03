@@ -39,9 +39,9 @@ def format_post(pnp_posts, content, email_source):
     if pnp_posts:
         for item in pnp_posts:
             formated += '<br>'
-            formated += '<b>' + item['timeStamp'] + '</b>'
+            formated += ('<b>' + item['timeStamp'] + '</b>')
             formated += '<br>'
-            for i in item['content']:
+            for i in item['post_content']:
                 formated += '<p>' + i + '</p>'
                 formated += '<br>'
             formated += '<br><br>'
@@ -118,7 +118,7 @@ def is_new_post(past_posts, cur_posts):
                 need_to_send.append(item)
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
-        return [' \t'.join(str(i)) for i in need_to_send][0]
+        return need_to_send
     LOGGER.debug('need_to_send %s',need_to_send)
     LOGGER.info('EXIT')
     return []
@@ -160,7 +160,7 @@ def _main():
     time_check, _ = create_time_check_string()
     LOGGER.debug('Run time is EST:%s', time_check.strftime(config.LOG_CONFIG.datefmt))
     JSON_FILE = config.OUTPUT.past_posts
-    time_marker = get_time_marker()
+    time_marker = get_time_marker(past_days=-50)
     #past 5 days
     # __posts =     
     # [
@@ -170,7 +170,6 @@ def _main():
     #     },
     # ]
     cur_posts = parse_pnp_posts(time_marker)
-
     if cur_posts:
         LOGGER.debug('email_handler_main() Posts: '+ ' '.join(cur_posts[0]['post_content']))
         email_machine_name = platform.uname()[1]
@@ -178,6 +177,7 @@ def _main():
         LOGGER.debug('email_handler_main() Posts: %s', cur_posts[-20:])
         LOGGER.info('EXIT')
         return True
+    LOGGER.info('EXIT')
     return False
 
 if __name__ == '__main__':
