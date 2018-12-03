@@ -91,7 +91,10 @@ def parse_content(raw_html, target_element, keyword):
     """
     Get all the posts at the first page of the target site , which can't be none
     Input: raw_html(string), target_element(string), keyword(string)
-    Return: posts[], which contains the whole html page, top to bottom in string
+    Return: post(dict) by calling create_post_dict(data),
+            {	
+                timeStamp:post_content
+            }
     eg:
         timeStamp:#1990-10-1
             post_content:[#line a, #line b]

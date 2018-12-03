@@ -87,14 +87,8 @@ def is_new_post(past_posts, cur_posts):
     post to the need to send email list
     Input: past_posts(dict), pnp_posts(list of dict)
     Return: need_to_send(list)
-    # cur_posts =
-    #     {
-    #         timeStamp:post_content
-    #     },
-
-    past_post={
-        shorten_msg:timeStamp[string] 
-        }
+    # [(post_time, post_content)]
+    # post_content=[]
     """
     LOGGER.info('ENTRY')
     need_to_send = []
