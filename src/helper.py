@@ -56,5 +56,8 @@ def create_time_check_string():
     Return: time_check(datetime), str(string)
     """
     #utc to ESTs
-    time_check = datetime.datetime.utcnow() - datetime.timedelta(0, 4*3600) #utc to ESTs
+    time_check = datetime.datetime.utcnow() - datetime.timedelta(0, 5*3600) #utc to ESTs
     return time_check, str(time_check.year)+str(time_check.month)+str(time_check.day)+str(time_check.hour)
+
+if __name__ == '__main__':
+    print create_time_check_string()
