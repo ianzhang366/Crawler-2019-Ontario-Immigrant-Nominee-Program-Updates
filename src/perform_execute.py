@@ -63,7 +63,8 @@ def daily_check(email_source):
     save_flag = 0
     past_posts = read_from_traget(JSON_FILE)
     print 'is_new_email() check hour:%s', past_posts
-    if time_check.hour == 17 or time_check.hour == 8:
+    print time_check.hour
+    if time_check.hour == 17 or time_check.hour == 22:
         if time_check.hour == 17:
             content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
             title = config.EMAIL_CONTENT.END_OF_DAY_TITLE
@@ -184,8 +185,8 @@ def _main():
 if __name__ == '__main__':
     time_check = dt.datetime.utcnow() - dt.timedelta(0, 4*3600)
     print 'EST: ', time_check.strftime(config.LOG_CONFIG.datefmt) 
-   # _main()
-    print  create_time_check_string()
-    print daily_check()
+    _main()
+#    print  create_time_check_string()
+#    print daily_check('a')
 
 
