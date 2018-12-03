@@ -62,9 +62,7 @@ def daily_check(email_source):
     time_check, d_short_msg = create_time_check_string()
     save_flag = 0
     past_posts = read_from_traget(JSON_FILE)
-    print 'is_new_email() check hour:%s', past_posts
-    print time_check.hour
-    if time_check.hour == 17 or time_check.hour == 22:
+    if time_check.hour == 17 or time_check.hour == 8:
         if time_check.hour == 17:
             content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
             title = config.EMAIL_CONTENT.END_OF_DAY_TITLE
