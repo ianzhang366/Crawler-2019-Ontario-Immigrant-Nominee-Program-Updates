@@ -50,4 +50,3 @@ RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python perform_execu
 ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook --ip=0.0.0.0 --allow-root
 #ENTRYPOINT service cron start && /bin/bash
 
-

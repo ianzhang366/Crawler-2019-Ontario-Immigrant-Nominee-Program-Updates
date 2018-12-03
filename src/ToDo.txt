@@ -1,5 +1,20 @@
 
 2, change the post dictionary
-3, debug the firefox issue
 4, modfiy the data structure
 pnp:4.2 seems stable version
+
+
+parse_content -> 
+        {count: # count itself is used to collapse the content by timestap
+            {	post_content:[], 
+                timeStamp:[string] 
+            }
+        }
+
+change the 2 layer post dictionary to 1 layer 
+{
+    timeStamp:post_content[]
+}
+parse_pnp_posts.get_related_post(posts)
+
+_main.is_new_email().is_new_post()

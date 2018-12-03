@@ -230,7 +230,8 @@ def parse_pnp_posts(time_marker):
 ######################### Handle Main logic ##########################
 if __name__ == '__main__':
     LOGGER.info('ENTRY: data_logic() as MAIN')
-    time_marker = get_time_marker()
+    time_marker = get_time_marker(-7)
+    print time_marker
     print parse_pnp_posts(time_marker)
     LOGGER.info('EXIT: data_logic() as MAIN')
 
