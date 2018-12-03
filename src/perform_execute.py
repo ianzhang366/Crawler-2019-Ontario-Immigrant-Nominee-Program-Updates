@@ -160,7 +160,7 @@ def _main():
     time_check, _ = create_time_check_string()
     LOGGER.debug('Run time is EST:%s', time_check.strftime(config.LOG_CONFIG.datefmt))
     JSON_FILE = config.OUTPUT.past_posts
-    time_marker = get_time_marker(past_days=-50)
+    time_marker = get_time_marker(past_days=-7)
     #past 5 days
     # __posts =     
     # [
