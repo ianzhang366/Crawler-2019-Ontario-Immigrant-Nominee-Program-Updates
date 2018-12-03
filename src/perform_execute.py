@@ -51,7 +51,7 @@ def format_post(pnp_posts, content, email_source):
     return whole.encode('utf-8')
 
 
-def daily_check(pnp_posts, email_source):
+def daily_check(email_source):
     """
     Send email at 8am and 5pm per day to indicate the program is running fine
     Input: pnp_posts(list of dict), email_source(string)
@@ -71,7 +71,7 @@ def daily_check(pnp_posts, email_source):
             content = config.EMAIL_CONTENT.BEGIN_OF_DAY_CONTENT
             title = config.EMAIL_CONTENT.BEGIN_OF_DAY_TITLE
         
-        d_msg = format_post(pnp_posts, content, email_source)
+        d_msg = format_post([], content, email_source)
         if (d_short_msg in past_posts.keys()) == False:
             save_flag = True
             past_posts[d_short_msg] = d_short_msg
@@ -147,7 +147,7 @@ def is_new_email(cur_posts, JSON_FILE, email_source):
             LOGGER.debug('out_html', out_html[-30:])
             LOGGER.info('EXIT')
             return True
-    daily_check(cur_posts, email_source)
+    daily_check(email_source)
     return False
     LOGGER.info('EXIT')
 
