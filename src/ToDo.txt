@@ -1,2 +1,6 @@
 pnp:5.1 seems stable version
 Add a readme to the project then make it public
+
+docker cp bb99850ca884:/opt/pnpCrawler/pnpCrawlerData/config.py .
+
+scp root@docker-test-env1.fyre.ibm.com:/home/pnpCrawler/pnpCrawlerData/config.py .
