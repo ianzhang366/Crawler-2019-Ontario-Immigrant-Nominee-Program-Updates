@@ -61,7 +61,7 @@ def daily_check(email_source):
     time_check, d_short_msg = create_time_check_string()
     save_flag = 0
     past_posts = read_from_traget(JSON_FILE)
-    if time_check.hour == 17 or time_check.hour == 10:
+    if time_check.hour == 17 or time_check.hour == 8:
         if time_check.hour == 17:
             content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
             title = config.EMAIL_CONTENT.END_OF_DAY_TITLE
@@ -161,12 +161,13 @@ def _main():
     #     },
     # ]
     cur_posts = parse_pnp_posts(time_marker)
+    email_machine_name = platform.uname()[1]
     if cur_posts:
         LOGGER.debug('email_handler_main() Posts: %s', cur_posts)
-        email_machine_name = platform.uname()[1]
         is_new_email(cur_posts, JSON_FILE, email_machine_name)
         LOGGER.info('EXIT')
         return True
+    daily_check(email_machine_name)
     LOGGER.info('EXIT')
     return False
 
