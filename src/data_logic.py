@@ -29,12 +29,12 @@ sys.path.append(_config.SEN_CONFIG.data_location)
 LOGGER = log_main('log_pnp_data_logic')
 TIMT_FORMAT = "%Y-%m-%d"
 
-def create_post_dict(data): 
+def create_post_dict(data):
     """
     Get all the posts at the first page of the target site , which can't be none
     Input: data(list)
-    Return: post(dict) 
-            {	
+    Return: post(dict)
+            {
                 timeStamp:post_content
             }
     """
@@ -43,7 +43,7 @@ def create_post_dict(data):
     if data:
         post = defaultdict()
         #find time stamp pattern within lines, eg: .*d{2}+,d{4}
-        time_p = re.compile(r"""^[A-Z].*\d{4}$""") 
+        time_p = re.compile(r"""^[A-Z].*\d{4}$""")
         flag = 0
         for line in data:
             #building the post by reading the timeStamp stream
@@ -92,7 +92,7 @@ def parse_content(raw_html, target_element, keyword):
     Get all the posts at the first page of the target site , which can't be none
     Input: raw_html(string), target_element(string), keyword(string)
     Return: post(dict) by calling create_post_dict(data),
-            {	
+            {
                 timeStamp:post_content
             }
     eg:
@@ -189,28 +189,27 @@ def parse_pnp_posts(time_marker):
     #set up initialzation figures
     target_site = config.CRWALER_PARA.target_site
     # div by class name
-    targetElement = config.CRWALER_PARA.targetElement 
+    targetElement = config.CRWALER_PARA.targetElement
     #get the raw html
-    raw_html = get_updates_page(target_site) 
+    raw_html = get_updates_page(target_site)
     if raw_html:
         keyword = config.CRWALER_PARA.keyword
         try:
             #parse parse defined by raw_html, targetElement, keyword
-            # posts(dict) 
+            # posts(dict)
             # {count: # count itself is used to collapse the content by timestap
-            #     {	post_content:[], 
-            #         timeStamp:[string] 
+            #     {	post_content:[],
+            #         timeStamp:[string]
             #     }
             # }
             posts = parse_content(raw_html, targetElement, keyword)
             # if we get 0 posts, send email to indicate that the parse function is broken
             if posts.keys():
-                    
                 #filter the parsed result by date, time_marker
-                #past_posts =     
+                #past_posts =
                 # [
                 #     {
-                #         post_content:[], 
+                #         post_content:[],
                 #         timeStamp:[string]
                 #     },
                 # ]

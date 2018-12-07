@@ -2,7 +2,7 @@
 save post to disk
 eg:
 past_post={
-    shorten_msg:timeStamp[string] 
+    shorten_msg:timeStamp[string]
     }
 """
 import json
@@ -38,5 +38,4 @@ def read_from_traget(json_file):
     target_dict = json.load(open(json_file))
     LOGGER.debug('read_from_traget() target_dict: %s', target_dict)
     LOGGER.info('EXIT')
-    
     return target_dict

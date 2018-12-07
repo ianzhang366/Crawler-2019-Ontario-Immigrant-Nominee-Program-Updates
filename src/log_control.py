@@ -44,6 +44,3 @@ if __name__ == '__main__':
     log_main('a', config.LOG_CONFIG)
     print log_main.__doc__
     # print config.LOG_CONFIG.location
-
-
-

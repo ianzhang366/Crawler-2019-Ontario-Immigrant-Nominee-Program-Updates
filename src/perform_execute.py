@@ -43,7 +43,6 @@ def format_post(pnp_posts, content, email_source):
                 formated += '<br><b>' + line + '</b>'
                 formated += '<br>'
             formated += '<br><br>'
-    
     whole = start+formated+send_from+end
     LOGGER.debug('format_post() %s', whole[-9:])
     LOGGER.info('EXIT')
@@ -55,7 +54,7 @@ def daily_check(email_source):
     Send email at 8am and 5pm per day to indicate the program is running fine
     Input: pnp_posts(list of dict), email_source(string)
     Return: Boolean
-    """	
+    """
     LOGGER.info('ENTRY')
     #use the time stamp to mark the daily job to the past post file
     time_check, d_short_msg = create_time_check_string()
@@ -70,11 +69,10 @@ def daily_check(email_source):
         else:
             content = config.EMAIL_CONTENT.BEGIN_OF_DAY_CONTENT
             title = config.EMAIL_CONTENT.BEGIN_OF_DAY_TITLE
-        
         d_msg = format_post([], content, email_source)
         if (d_short_msg in past_posts.keys()) == False:
             past_posts[d_short_msg] = d_short_msg
-            save_dict_to_json(past_posts, JSON_FILE) 
+            save_dict_to_json(past_posts, JSON_FILE)
             if _send_email(d_msg, title=title):
                 LOGGER.info('EXIT Email sent')
                 return True
@@ -85,7 +83,7 @@ def daily_check(email_source):
 
 def is_new_post(past_posts, cur_posts):
     """
-    read the pnp_posts.content to see if it's in the past_posts if not, add the 
+    read the pnp_posts.content to see if it's in the past_posts if not, add the
     post to the need to send email list
     Input: past_posts(dict), pnp_posts(list of dict)
     Return: need_to_send(list)
@@ -106,7 +104,7 @@ def is_new_post(past_posts, cur_posts):
             shorten_msg = ''.join(shorten_msg)
             if (shorten_msg in past_posts.keys()) == False:
                 save_flag = True
-                past_posts[shorten_msg] = post_time 
+                past_posts[shorten_msg] = post_time
                 need_to_send.append((post_time, post_content))
     if save_flag:
         save_dict_to_json(past_posts, JSON_FILE)
@@ -118,13 +116,13 @@ def is_new_post(past_posts, cur_posts):
 
 def is_new_email(cur_posts, JSON_FILE, email_source):
     """
-    read the past posts from the JSON file location and compare with the current posts to 
+    read the past posts from the JSON file location and compare with the current posts to
     decide if send an email also, send daily check email at 8am and 5pm
     Input: pnp_posts(list of dict), JSON_FILE(string), email_source(string)
-    # cur_posts =     
+    # cur_posts =
     # [
     #     {
-    #         post_content:[], 
+    #         post_content:[]
     #         timeStamp:[string]
     #     },
     # ]
@@ -155,10 +153,10 @@ def _main():
     JSON_FILE = config.OUTPUT.past_posts
     time_marker = get_time_marker(past_days=-7)
     #past 5 days
-    # __posts =     
+    # __posts =
     # [
     #     {
-    #         post_content:[], 
+    #         post_content:[],
     #         timeStamp:[string]
     #     },
     # ]
@@ -176,9 +174,7 @@ def _main():
 if __name__ == '__main__':
 #    time_check = dt.datetime.utcnow() - dt.timedelta(0, 4*3600)
     time_check, _ =  create_time_check_string()
-    print 'EST: ', time_check.strftime(config.LOG_CONFIG.datefmt) 
+    print 'EST: ', time_check.strftime(config.LOG_CONFIG.datefmt)
     _main()
 #    print  create_time_check_string()
 #    print daily_check('a')
-
-

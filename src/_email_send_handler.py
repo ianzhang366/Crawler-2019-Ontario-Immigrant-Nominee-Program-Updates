@@ -23,7 +23,7 @@ SMTP_PORT = 587
 def send_email_template(gmail_user, gmail_pwd, recipients, subject, email_content):
     """
     Set up email communication details
-    Inputs: user's email name(string) and pwd(string); recipients (list), subject(string), 
+    Inputs: user's email name(string) and pwd(string); recipients (list), subject(string),
             email_content(string)
     Return: Boolean, if sent success then True
     """
