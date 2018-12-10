@@ -40,7 +40,7 @@ ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 #RUN chmod 0644 /etc/cron.d/cool-task
 
 #RUN (crontab -l ; echo "TZ=America/Toronto")| crontab -
-RUN (crontab -l ; echo "0 */2 * * * /opt/pnpCrawler/src/clear_log.sh")| crontab -
+RUN (crontab -l ; echo "30 * * * * /opt/pnpCrawler/src/clear_log.sh")| crontab -
 RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python perform_execute.py")| crontab -
 
 
