@@ -167,6 +167,7 @@ def get_updates_page(target_site):
             driver.get(target_site)
             raw_html = driver.page_source.encode('utf-8')
             time.sleep(2)
+            driver.quit()
             if len(raw_html) <= 130:
                 LOGGER.debug('get_updates_page() %s',raw_html)
                 LOGGER.info('Exit')

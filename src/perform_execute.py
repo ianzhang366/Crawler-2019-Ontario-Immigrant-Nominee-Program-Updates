@@ -61,7 +61,7 @@ def daily_check(email_source):
     save_flag = 0
     past_posts = read_from_traget(JSON_FILE)
     day_end_at = 19
-    day_start_at = 8
+    day_start_at = 10
     if time_check.hour == day_start_at or time_check.hour == day_end_at:
         if time_check.hour == day_end_at:
             content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
