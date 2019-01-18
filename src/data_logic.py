@@ -96,7 +96,7 @@ def parse_content(raw_html, target_element, keyword):
                 timeStamp:post_content
             }
     eg:
-        timeStamp:#1990-10-1
+        timeStamp:#u'January 10, 2019'
             post_content:[#line a, #line b]
     """
     #raw_html is raw html
@@ -116,17 +116,13 @@ def parse_content(raw_html, target_element, keyword):
         date_found = soup.select(date_selector)
         post_found = soup.select(post_selector)
         
-        date_selector = '#pagebody > h3'
-        print post_selector, date_selector
         # Extract data from the found elements
-        print [i.text for i in date_found], [i.text for i in post_found]
         post = defaultdict()
         for i in range(len(date_found)):
             date = date_found[i].text
             #date_tmp = dt.strptime(date, '%B %d, %Y')
             #date = date_tmp.strftime('%Y-%m-%d')
             post[date] = post_found[i].text
-        print post
         #for tag in posts:
         #    post_contents = tag.find_all("h3")
         #    print type(post_content), post_content

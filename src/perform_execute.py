@@ -38,11 +38,11 @@ def format_post(pnp_posts, content, email_source):
     send_from = '<p style="color:#FFAA00"><b>' + email_source+ '</b></p>'
     if pnp_posts:
         for post_time, post_content in pnp_posts:
-            formated += '<br>'
-            for line in post_content:
-                formated += '<br><b>' + line + '</b>'
-                formated += '<br>'
-            formated += '<br><br>'
+            formated += '<b>' + post_time + '</b><br>'
+            #for line in post_content:
+             #   formated += '<br><b>' + line + '</b>'
+              #  formated += '<br>'
+            formated += post_content + '<br><br>'
     whole = start+formated+send_from+end
     LOGGER.debug('format_post() %s', whole[-9:])
     LOGGER.info('EXIT')
@@ -131,10 +131,11 @@ def is_new_email(cur_posts, JSON_FILE, email_source):
     #read the past posts from the JSON file location
     past_posts = read_from_traget(JSON_FILE)
     need_to_send = is_new_post(past_posts, cur_posts)
+    print need_to_send
     if need_to_send:
         out_html = format_post(need_to_send, ' ', email_source)
         if _send_email(out_html):
-            LOGGER.debug('out_html', out_html[-30:])
+            LOGGER.debug('out_html', out_html)
             LOGGER.info('EXIT')
             return True
     daily_check(email_source)
