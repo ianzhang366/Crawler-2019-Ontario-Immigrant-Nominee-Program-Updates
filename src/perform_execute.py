@@ -38,11 +38,11 @@ def format_post(pnp_posts, content, email_source):
     send_from = '<p style="color:#FFAA00"><b>' + email_source+ '</b></p>'
     if pnp_posts:
         for post_time, post_content in pnp_posts:
-            formated += '<br>'
-            for line in post_content:
-                formated += '<br><b>' + line + '</b>'
-                formated += '<br>'
-            formated += '<br><br>'
+            formated += '<b>' + post_time + '</b><br>'
+            #for line in post_content:
+             #   formated += '<br><b>' + line + '</b>'
+              #  formated += '<br>'
+            formated += post_content + '<br><br>'
     whole = start+formated+send_from+end
     LOGGER.debug('format_post() %s', whole[-9:])
     LOGGER.info('EXIT')
@@ -61,7 +61,7 @@ def daily_check(email_source):
     save_flag = 0
     past_posts = read_from_traget(JSON_FILE)
     day_end_at = 19
-    day_start_at = 8
+    day_start_at = 10
     if time_check.hour == day_start_at or time_check.hour == day_end_at:
         if time_check.hour == day_end_at:
             content = config.EMAIL_CONTENT.END_OF_DAY_CONTENT
@@ -131,10 +131,11 @@ def is_new_email(cur_posts, JSON_FILE, email_source):
     #read the past posts from the JSON file location
     past_posts = read_from_traget(JSON_FILE)
     need_to_send = is_new_post(past_posts, cur_posts)
+    print need_to_send
     if need_to_send:
         out_html = format_post(need_to_send, ' ', email_source)
         if _send_email(out_html):
-            LOGGER.debug('out_html', out_html[-30:])
+            LOGGER.debug('out_html', out_html)
             LOGGER.info('EXIT')
             return True
     daily_check(email_source)
@@ -151,7 +152,7 @@ def _main():
     time_check, _ = create_time_check_string()
     LOGGER.debug('Run time is EST:%s', time_check.strftime(config.LOG_CONFIG.datefmt))
     JSON_FILE = config.OUTPUT.past_posts
-    time_marker = get_time_marker(past_days=-7)
+    time_marker = get_time_marker(past_days=-10)
     #past 5 days
     # __posts =
     # [

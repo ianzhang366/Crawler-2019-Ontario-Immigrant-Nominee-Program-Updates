@@ -19,7 +19,7 @@ build_run(){
     SCRIPT_START_TIME=`date`;
     echo -e "\n\n Build docker image script start time: ${SCRIPT_START_TIME}";
 
-    docker build -t ${C_NAME}:${VERSION} -f /home/pnpCrawler/Dockerfile . 
+    docker build --no-cache=true -t ${C_NAME}:${VERSION} -f /home/pnpCrawler/Dockerfile . 
 
     SCRIPT_COMPLETE_TIME=`date`;
     echo -e "\n\n Build docker image script complete time: ${SCRIPT_COMPLETE_TIME}";

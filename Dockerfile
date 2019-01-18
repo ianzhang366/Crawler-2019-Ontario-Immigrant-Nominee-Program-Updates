@@ -47,6 +47,6 @@ RUN (crontab -l ; echo "* * * * * cd /opt/pnpCrawler/src && python perform_execu
 #CMD tail -f /dev/null #this line will make the container keeps running
 #CMD [ "python", "/opt/pnpAtPythonanywhere/src/email_handler.py" ]
 
-ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook --ip=0.0.0.0 --allow-root
-#ENTRYPOINT service cron start && /bin/bash
+# ENTRYPOINT service cron start && cd /opt/pnpCrawler/src && jupyter notebook --ip=0.0.0.0 --allow-root
+ENTRYPOINT service cron start && /bin/bash
 
