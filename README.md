@@ -7,16 +7,7 @@ More specificly, it will parse the page every 30 seconds, if there's new update 
 ## Project Structure
 To achieve the goal, I used the python to parse the site and sending out emails, using the beautiful soup, selenium and smtplib. To simplifiy the deploy process, I built up an docker image for this project. Within the image, I used crontab to run the project every 30 seconds.
 
-To print the directory structure: 
-```python
-brew install tree
-```
-*the following line is used for getting the directory structure*
-```
-tree -r -I '*pyc|build_docker_image.sh|run_image.sh|jupyter_notebook_config.py' ../pnpCrawler
-```
-
-## Project structure tree
+### Project structure tree
 ```
 ../pnpCrawler
 ├── src
