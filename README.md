@@ -47,5 +47,4 @@ The main function is perform_execute.py, which will call the data_logic.py to ge
 Also, I put the configuration at the config.py which is not visiable on github, but I provided the _config.py as example for it, you can use it to get your own version. In addition, the Dockerfile is presented, you can modify it to get your own image.
 
 ### Notes of Dockerfile
-Cron job, 30 * * * * cd /tmp && rm -r ./*, this one is added to avoid the temp file of geckodriver taking over all the space.
-
+Cron job, ```30 * * * * cd /tmp && rm -r ./*```, this one is added to avoid the temp file of geckodriver taking over all the space.
