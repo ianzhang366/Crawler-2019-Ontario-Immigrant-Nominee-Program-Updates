@@ -1,6 +1,6 @@
 # A Crwaler for 2019 Ontario Immigrant Nominee Program Updates page
 ## Project Idea
-This project is a small crwaler, which will parse info from the 2019 Ontario Immigrant Nominee Program Updates(https://www.ontario.ca/page/2019-ontario-immigrant-nominee-program-updates) page.
+This project is a small crwaler, which will parse info from the [2019 Ontario Immigrant Nominee Program Updates](https://www.ontario.ca/page/2019-ontario-immigrant-nominee-program-updates) page.
 
 More specificly, it will parse the page every 30 seconds, if there's new update it will send email to the recipents.
 
