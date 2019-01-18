@@ -104,18 +104,39 @@ def parse_content(raw_html, target_element, keyword):
     # print type(raw_html), raw_html
     try:
         soup = BeautifulSoup(raw_html, "html.parser")
-        data = []
-        posts = soup.findAll('div', {"class": target_element})
-        for tag in posts:
-            post_contents = tag.find_all("p")
-            # print type(post_content), post_content
-            for post in post_contents:
-                data.append(post.text)
-        if data:
-            LOGGER.debug('parse_content() %s', data[0])
+       # data = []
+        #posts = soup.findAll('div', {"id": target_element})
+       # print posts
+        # find all div elements that are inside a div element
+        # and are proceeded by an h3 element
+        post_selector = '#' + target_element + ' > h3 ~ p'
+        date_selector = '#' + target_element + ' > h3'
+
+        # find elements that contain the data we want
+        date_found = soup.select(date_selector)
+        post_found = soup.select(post_selector)
+        
+        date_selector = '#pagebody > h3'
+        print post_selector, date_selector
+        # Extract data from the found elements
+        print [i.text for i in date_found], [i.text for i in post_found]
+        post = defaultdict()
+        for i in range(len(date_found)):
+            date = date_found[i].text
+            #date_tmp = dt.strptime(date, '%B %d, %Y')
+            #date = date_tmp.strftime('%Y-%m-%d')
+            post[date] = post_found[i].text
+        print post
+        #for tag in posts:
+        #    post_contents = tag.find_all("h3")
+        #    print type(post_content), post_content
+        #    for post in post_contents:
+        #        data.append(post.text)
+        if post:
+            LOGGER.debug('parse_content() %s', post)
             LOGGER.info('Exit')
-            return create_post_dict(data)
-        LOGGER.debug('parse_content() %s', data)
+            return post
+        LOGGER.debug('parse_content() %s', post)
         LOGGER.info('Exit')
         return False
     except Exception as err:
@@ -205,6 +226,7 @@ def parse_pnp_posts(time_marker):
             # }
             posts = parse_content(raw_html, targetElement, keyword)
             # if we get 0 posts, send email to indicate that the parse function is broken
+            print posts
             if posts.keys():
                 #filter the parsed result by date, time_marker
                 #past_posts =
@@ -233,7 +255,7 @@ def parse_pnp_posts(time_marker):
 ######################### Handle Main logic ##########################
 if __name__ == '__main__':
     LOGGER.info('ENTRY: data_logic() as MAIN')
-    time_marker = get_time_marker(-7)
+    time_marker = get_time_marker(-20)
     print time_marker
     print parse_pnp_posts(time_marker)
     LOGGER.info('EXIT: data_logic() as MAIN')
