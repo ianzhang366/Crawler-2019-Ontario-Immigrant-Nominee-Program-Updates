@@ -1,3 +1,5 @@
 /pnpCrawlerData/*
 src/geckodriver.log
 src/tags
+*.pyc
+*.swp
