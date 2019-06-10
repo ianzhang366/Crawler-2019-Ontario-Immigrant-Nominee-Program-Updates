@@ -49,4 +49,3 @@ In addition, the Dockerfile is presented, you can modify it to get your own imag
 
 ### Notes of Dockerfile
 Crontab job, ```30 * * * * cd /tmp && rm -r ./*```, this one is added to avoid the temp file of geckodriver taking over all the space.
->>>>>>> 1d4acc262fe55326fe9e4f68a5f28c4f0399ad02
